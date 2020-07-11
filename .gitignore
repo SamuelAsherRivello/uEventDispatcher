@@ -55,3 +55,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 BadBirds/.idea/
+.idea/
+ProjectSettings/
+Logs/
