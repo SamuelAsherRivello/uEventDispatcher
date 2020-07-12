@@ -1,4 +1,4 @@
-namespace RMC.Projects.UEventDispatcher
+namespace RMC.Core.UEvents.EventDispatcher
 {
 	public interface IEventDispatcher
 	{

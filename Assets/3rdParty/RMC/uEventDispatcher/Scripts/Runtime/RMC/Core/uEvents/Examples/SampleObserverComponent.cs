@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace RMC.Projects.UEventDispatcher.Examples
+namespace RMC.Core.UEvents.Examples
 {
 	public class SampleObserverComponent : MonoBehaviour
 	{
@@ -21,11 +21,11 @@ namespace RMC.Projects.UEventDispatcher.Examples
 		}
 
 		//  Event Handlers    ------------------------------
-		private void SampleObservedComponent_onSampleEvent(IEvent aIEvent)
+		private void SampleObservedComponent_onSampleEvent(IEvent iEvent)
 		{
+			SampleEvent sampleEvent = (SampleEvent)iEvent;
 
-			Debug.Log("\tListening: _onSampleEvent() aIEvent: " + aIEvent + " with customValue: " + (aIEvent as SampleEvent).CustomValue);
-
+			Debug.Log($"{this.GetType().Name} OnSampleEvent() CustomValue={sampleEvent.CustomValue}");
 		}
 	}
 }

@@ -1,12 +1,12 @@
-namespace RMC.Projects.UEventDispatcher
+namespace RMC.Core.UEvents
 {
 	public class Event : IEvent
 	{
 		//  Properties -----------------------------------
 		string IEvent.Type
 		{
-			get { return _type_string; }
-			set { _type_string = value; }
+			get { return _type; }
+			set { _type = value; }
 		}
 
 		object IEvent.Target
@@ -16,15 +16,14 @@ namespace RMC.Projects.UEventDispatcher
 		}
 
       //  Fields ---------------------------------------
-      private string _type_string;
+      private string _type;
 		private object _target;
 
 		//  Initialization -------------------------------
-		public Event(string aType_str)
+		public Event(string type)
 		{
 			//
-			_type_string = aType_str;
-
+			_type = type;
 		}
 	}
 }

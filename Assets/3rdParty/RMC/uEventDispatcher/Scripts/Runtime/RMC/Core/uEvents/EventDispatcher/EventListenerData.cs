@@ -1,4 +1,5 @@
-namespace RMC.Projects.UEventDispatcher
+
+namespace RMC.Core.UEvents.EventDispatcher
 {
 	public class EventListenerData
 	{

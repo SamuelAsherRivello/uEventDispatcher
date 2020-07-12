@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace RMC.Projects.UEventDispatcher
+namespace RMC.Core.UEvents.EventDispatcher
 {
 	//  Namespace Properties ------------------------------
 	public delegate void EventDelegate(IEvent iEvent);
@@ -16,7 +16,7 @@ namespace RMC.Projects.UEventDispatcher
 	public class EventDispatcher : IEventDispatcher
 	{
 		//  Fields ---------------------------------------
-		private Hashtable eventListenerData = new Hashtable();
+		private Hashtable _eventListenerData = new Hashtable();
 		private object _target;
 
 		//  Initialization -------------------------------
@@ -29,7 +29,7 @@ namespace RMC.Projects.UEventDispatcher
 		public void OnApplicationQuit()
 		{
 			//TODO, DO THIS CLEANUP HERE, OR OBLIGATE API-USER TO DO IT??
-			eventListenerData.Clear();
+			_eventListenerData.Clear();
 		}
 
 		//  Methods --------------------------------
@@ -51,13 +51,13 @@ namespace RMC.Projects.UEventDispatcher
 
 				//	OUTER
 				string keyForOuterHashTable_string = _getKeyForOuterHashTable(eventName);
-				if (!this.eventListenerData.ContainsKey(keyForOuterHashTable_string))
+				if (!this._eventListenerData.ContainsKey(keyForOuterHashTable_string))
 				{
-					this.eventListenerData.Add(keyForOuterHashTable_string, new Hashtable());
+					this._eventListenerData.Add(keyForOuterHashTable_string, new Hashtable());
 				}
 
             //	INNER
-            Hashtable inner_hashtable = this.eventListenerData[keyForOuterHashTable_string] as Hashtable;
+            Hashtable inner_hashtable = this._eventListenerData[keyForOuterHashTable_string] as Hashtable;
 				EventListenerData eventListenerData = new EventListenerData(aIEventListener, eventName, eventDelegate, eventDispatcherAddMode);
 				//
 				string keyForInnerHashTable_string = _getKeyForInnerHashTable(eventListenerData);
@@ -91,11 +91,11 @@ namespace RMC.Projects.UEventDispatcher
 
 			//	OUTER
 			string keyForOuterHashTable_string = _getKeyForOuterHashTable(eventName);
-			if (eventListenerData.ContainsKey(keyForOuterHashTable_string))
+			if (_eventListenerData.ContainsKey(keyForOuterHashTable_string))
 			{
 
 				//	INNER
-				Hashtable inner_hashtable = eventListenerData[keyForOuterHashTable_string] as Hashtable;
+				Hashtable inner_hashtable = _eventListenerData[keyForOuterHashTable_string] as Hashtable;
 				string keyForInnerHashTable_string = _getKeyForInnerHashTable(new EventListenerData(aIEventListener, eventName, eventDelegate, EventDispatcherAddMode.DEFAULT));
 				//
 				if (inner_hashtable.Contains(keyForInnerHashTable_string))
@@ -117,7 +117,7 @@ namespace RMC.Projects.UEventDispatcher
 			{
 				//	OUTER
 				string keyForOuterHashTable_string = _getKeyForOuterHashTable(eventName);
-				Hashtable inner_hashtable = eventListenerData[keyForOuterHashTable_string] as Hashtable;
+				Hashtable inner_hashtable = _eventListenerData[keyForOuterHashTable_string] as Hashtable;
 				//
 				object aIEventListener = _getArgumentsCallee(eventDelegate);
 				//  INNER
@@ -135,7 +135,7 @@ namespace RMC.Projects.UEventDispatcher
 			bool wasSuccessful_boolean = false;
 
 			//TODO, IS IT A MEMORY LEAK TO JUST RE-CREATE THE TABLE? ARE THE INNER HASHTABLES LEAKING?
-			eventListenerData = new Hashtable();
+			_eventListenerData = new Hashtable();
 
 			return wasSuccessful_boolean;
 		}
@@ -150,11 +150,11 @@ namespace RMC.Projects.UEventDispatcher
 			//	OUTER
 			string keyForOuterHashTable_string = _getKeyForOuterHashTable(aIEvent.Type);
 			int dispatchedCount_int = 0;
-			if (eventListenerData.ContainsKey(keyForOuterHashTable_string))
+			if (_eventListenerData.ContainsKey(keyForOuterHashTable_string))
 			{
 
             //	INNER
-            Hashtable inner_hashtable = this.eventListenerData[keyForOuterHashTable_string] as Hashtable;
+            Hashtable inner_hashtable = this._eventListenerData[keyForOuterHashTable_string] as Hashtable;
 				IEnumerator innerHashTable_ienumerator = inner_hashtable.GetEnumerator();
 				DictionaryEntry dictionaryEntry;
 				EventListenerData eventListenerData;

@@ -1,4 +1,4 @@
-namespace RMC.Projects.UEventDispatcher.Examples
+namespace RMC.Core.UEvents.Examples
 {
 	public class SampleEvent : Event
 	{
@@ -14,9 +14,9 @@ namespace RMC.Projects.UEventDispatcher.Examples
 		public static string SAMPLE_EVENT = "SAMPLE_EVENT";
 
 		//  Initialization -------------------------------
-		public SampleEvent(string type) : base(type)
+		public SampleEvent(string type, string customValue) : base(type)
 		{
-
+			_customValue = customValue;
 		}
 	}
 }
