@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 50869067}
   - component: {fileID: 50869066}
   m_Layer: 0
-  m_Name: UEventAssetDemoReceiver
+  m_Name: Observer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 791023427}
   - component: {fileID: 791023426}
   m_Layer: 0
-  m_Name: UEventAssetDemo
+  m_Name: Subject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

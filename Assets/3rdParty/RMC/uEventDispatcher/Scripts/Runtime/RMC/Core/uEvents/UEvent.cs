@@ -1,7 +1,9 @@
-﻿using UnityEngine.Events;
+﻿using System;
+using UnityEngine.Events;
 
 namespace RMC.Core.UEvents
 {
+   [Serializable]
    public class UEvent : UnityEvent<UEventData>
    {
    }

@@ -16,12 +16,6 @@ namespace RMC.Core.UEvents.EventDispatcher
          _uEvents = new Dictionary<Type, UEvent>();
       }
 
-      //  Unity Methods --------------------------------
-      public void OnApplicationQuit()
-      {
-      }
-
-
       //  Methods --------------------------------
 
       public void Invoke<T>(UEventData uEventData) where T : UEvent
@@ -31,14 +25,10 @@ namespace RMC.Core.UEvents.EventDispatcher
          {
             uEvent.Invoke(uEventData);
          }
-
-         Debug.Log("invoke uEvent: " + uEvent);
       }
 
       private UEvent _getUEvent<T>() where T : UEvent
       {
-         //Debug.Log("looking for type " + (typeof(T))  + " in count of " + _uEvents.Count);
-
          UEvent uEvent = null;
          _uEvents.TryGetValue(typeof(T), out uEvent);
          return uEvent;
@@ -56,8 +46,6 @@ namespace RMC.Core.UEvents.EventDispatcher
 
          uEvent.AddListener(unityAction);
       }
-
-
       public void RemoveAllListeners()
       {
          foreach (KeyValuePair<Type, UEvent> entry in _uEvents)

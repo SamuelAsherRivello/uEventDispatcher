@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RMC.Core.UEvents.Examples
 {
-	public class UEventDispatcherAssetDemo : MonoBehaviour
+	public class UEventDispatcherAssetDemoSubject : MonoBehaviour
 	{
 		//  Fields ---------------------------------------
 		[SerializeField]

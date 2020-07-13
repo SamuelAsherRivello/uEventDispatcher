@@ -6,7 +6,7 @@ namespace RMC.Core.UEvents.Examples
 {
 	public class CustomData : UEventData {}
 
-	public class UEventAssetDemo : MonoBehaviour
+	public class UEventAssetDemoSubject : MonoBehaviour
 	{
 		//  Fields ---------------------------------------
 		[SerializeField]
