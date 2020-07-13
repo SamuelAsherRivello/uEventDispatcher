@@ -23,7 +23,7 @@ namespace RMC.Core.UEvents.Examples
 		//  Event Handlers   -------------------------------
 		private void OnEvent(IUEventData uEventData)
 		{
-			Debug.Log($"{this.GetType().Name} OnEvent() uEventData={uEventData}");
+			Debug.Log($"{this.GetType().Name} OnEvent() uEventData='{uEventData}'. Null is ok.");
 		}
 	}
 }
