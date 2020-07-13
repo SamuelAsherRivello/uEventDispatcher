@@ -1,42 +1,41 @@
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace RMC.Core.UEvents.UEventDispatcher
 {
 	public class UEventDispatcher : IUEventDispatcher
 	{
       //  Fields ---------------------------------------
-      private Dictionary<Type, UEvent> _uEvents = null;
+      private Dictionary<Type, IUEvent> _uEvents = null;
 
 		//  Initialization -------------------------------
 		public UEventDispatcher()
 		{
-         _uEvents = new Dictionary<Type, UEvent>();
+         _uEvents = new Dictionary<Type, IUEvent>();
       }
 
       //  Methods --------------------------------
 
-      public void Invoke<T>(IUEventData uEventData) where T : UEvent
+      public void Invoke<T>(IUEventData uEventData) where T : IUEvent
       {
-         UEvent uEvent = _getUEvent<T>();
+         IUEvent uEvent = _getUEvent<T>();
          if (uEvent != null)
          {
             uEvent.Invoke(uEventData);
          }
       }
 
-      private UEvent _getUEvent<T>() where T : UEvent
+      private IUEvent _getUEvent<T>() where T : IUEvent
       {
-         UEvent uEvent = null;
+         IUEvent uEvent = null;
          _uEvents.TryGetValue(typeof(T), out uEvent);
          return uEvent;
       }
 
-      public void AddEventListener<T>(UnityAction<IUEventData> unityAction) where T : UEvent
+      public void AddEventListener<T>(UnityAction<IUEventData> unityAction) where T : IUEvent
       {
-         UEvent uEvent = _getUEvent<T>();
+         IUEvent uEvent = _getUEvent<T>();
 
          if (uEvent == null)
          {
@@ -48,16 +47,16 @@ namespace RMC.Core.UEvents.UEventDispatcher
       }
       public void RemoveAllListeners()
       {
-         foreach (KeyValuePair<Type, UEvent> entry in _uEvents)
+         foreach (KeyValuePair<Type, IUEvent> entry in _uEvents)
          {
             entry.Value.RemoveAllListeners();
          }
          _uEvents.Clear();
       }
 
-      public void RemoveListener<T>(UnityAction<IUEventData> unityAction) where T : UEvent
+      public void RemoveListener<T>(UnityAction<IUEventData> unityAction) where T : IUEvent
       {
-         UEvent uEvent = _getUEvent<T>();
+         IUEvent uEvent = _getUEvent<T>();
          if (uEvent != null)
          {
             uEvent.RemoveListener(unityAction);

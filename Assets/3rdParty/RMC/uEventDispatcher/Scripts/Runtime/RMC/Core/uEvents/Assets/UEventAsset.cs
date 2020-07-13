@@ -13,7 +13,6 @@ namespace RMC.Core.UEvents.Assets
       protected void OnEnable()
       {
          _uEvent = new UEvent();
-
       }
 
       //  Methods   -------------------------------

@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0d8b582a7cdbf47bb531a7b1cf550e, type: 3}
-  m_Name: MovementUEventDispatcherAsset
+  m_Script: {fileID: 11500000, guid: 92aae1af2df32f1468ec067c831fd8ce, type: 3}
+  m_Name: MoveLeftUEventAsset
   m_EditorClassIdentifier: 

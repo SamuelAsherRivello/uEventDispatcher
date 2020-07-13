@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Events;
 
-namespace RMC.Core.UEvents.Assets
+namespace RMC.Core.UEvents
 {
    public interface IUEvent
    {

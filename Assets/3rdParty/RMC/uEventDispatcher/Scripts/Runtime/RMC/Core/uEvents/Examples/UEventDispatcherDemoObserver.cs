@@ -14,8 +14,11 @@ namespace RMC.Core.UEvents
 
 		protected void OnDestroy()
 		{
-			EventDispatcherSingleton.Instance.RemoveListener<UEvent>(
+			if (EventDispatcherSingleton.IsInstantiated)
+         {
+				EventDispatcherSingleton.Instance.RemoveListener<UEvent>(
 				EventDispatcherSingleton_OnSampleEvent);
+			}
 		}
 
       private void EventDispatcherSingleton_OnSampleEvent(IUEventData uEventData)

@@ -1,10 +1,15 @@
-﻿using System;
+﻿using RMC.Core.UEvents.Assets;
+using System;
 using UnityEngine.Events;
 
 namespace RMC.Core.UEvents
 {
    [Serializable]
-   public class UEvent : UnityEvent<IUEventData>
+   public class UEvent : UnityEvent<IUEventData>, IUEvent
    {
+      public void Invoke()
+      {
+         this.Invoke(null);
+      }
    }
 }
