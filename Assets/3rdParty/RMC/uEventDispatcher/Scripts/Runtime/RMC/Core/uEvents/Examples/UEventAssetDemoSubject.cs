@@ -1,10 +1,9 @@
 ﻿using RMC.Core.UEvents.Assets;
-using System;
 using UnityEngine;
 
 namespace RMC.Core.UEvents.Examples
 {
-	public class CustomData : UEventData {}
+	public class MyCustomUEventData : IUEventData { }
 
 	public class UEventAssetDemoSubject : MonoBehaviour
 	{
@@ -22,7 +21,7 @@ namespace RMC.Core.UEvents.Examples
 
 			_uEventAsset.Invoke(new UEventData());
 
-			_uEventAsset.Invoke(new CustomData());
+			_uEventAsset.Invoke(new MyCustomUEventData());
 		}
 	}
 }

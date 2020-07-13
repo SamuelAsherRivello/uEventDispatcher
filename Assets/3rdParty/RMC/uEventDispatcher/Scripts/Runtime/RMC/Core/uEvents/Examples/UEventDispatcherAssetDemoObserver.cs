@@ -22,7 +22,7 @@ namespace RMC.Core.UEvents.Examples
 		}
 
 		//  Event Handlers   -------------------------------
-		private void EventAsset_OnSampleEvent(UEventData uEventData)
+		private void EventAsset_OnSampleEvent(IUEventData uEventData)
 		{
 			Debug.Log($"{this.GetType().Name} OnSampleEvent() uEventData={uEventData}");
 		}

@@ -18,7 +18,7 @@ namespace RMC.Core.UEvents
 				EventDispatcherSingleton_OnSampleEvent);
 		}
 
-      private void EventDispatcherSingleton_OnSampleEvent(UEventData uEventData)
+      private void EventDispatcherSingleton_OnSampleEvent(IUEventData uEventData)
 		{
 			Debug.Log($"{this.GetType().Name} OnSampleEvent() uEventData={uEventData}");
 		}

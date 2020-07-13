@@ -1,22 +1,21 @@
 ﻿using NUnit.Framework;
-using System;
 
-namespace RMC.Core.UEvents.EventDispatcher
+namespace RMC.Core.UEvents
 {
    public class TestUEvent01 : UEvent { };
    public class TestUEvent02 : UEvent { };
 
-   public class UEventDispatcherTest
+   public class UEventTest
    {
       [Test]
       public void Listener_WasNotCalled_WhenNotInvoked()
       {
          // Arrange
-         var uEventDispatcher = new UEventDispatcher();
+         var uEvent = new UEvent();
          bool wasCalled = false;
 
          // Act
-         uEventDispatcher.AddEventListener<TestUEvent01>((IUEventData uEventData) =>
+         uEvent.AddListener((IUEventData uEventData) =>
          {
             wasCalled = true;
          });
@@ -29,16 +28,16 @@ namespace RMC.Core.UEvents.EventDispatcher
       public void Listener_WasCalled_WhenInvoked()
       {
          // Arrange
-         var uEventDispatcher = new UEventDispatcher();
+         var uEvent = new UEvent();
          bool wasCalled = false;
 
-         uEventDispatcher.AddEventListener<TestUEvent01>((IUEventData uEventData) =>
+         uEvent.AddListener((IUEventData uEventData) =>
          {
             wasCalled = true;
          });
 
          // Act
-         uEventDispatcher.Invoke<TestUEvent01>(new UEventData());
+         uEvent.Invoke(new UEventData());
 
          // Assert
          Assert.That(wasCalled, Is.True);

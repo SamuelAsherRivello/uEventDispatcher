@@ -5,10 +5,10 @@ namespace RMC.Core.UEvents.Assets
    public interface IUEvent
    {
       //  Methods   -------------------------------
-      void AddListener(UnityAction<UEventData> unityAction);
+      void AddListener(UnityAction<IUEventData> unityAction);
       void Invoke();
-      void Invoke(UEventData uEventData);
+      void Invoke(IUEventData uEventData);
       void RemoveAllListeners();
-      void RemoveListener(UnityAction<UEventData> unityAction);
+      void RemoveListener(UnityAction<IUEventData> unityAction);
    }
 }

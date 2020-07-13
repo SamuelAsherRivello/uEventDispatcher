@@ -17,7 +17,7 @@ namespace RMC.Core.UEvents.Assets
       }
 
       //  Methods   -------------------------------
-      public void AddListener(UnityAction<UEventData> unityAction)
+      public void AddListener(UnityAction<IUEventData> unityAction)
       {
          _uEvent.AddListener(unityAction);
       }
@@ -27,7 +27,7 @@ namespace RMC.Core.UEvents.Assets
          _uEvent.Invoke(null);
       }
 
-      public void Invoke(UEventData uEventData)
+      public void Invoke(IUEventData uEventData)
       {
          _uEvent.Invoke(uEventData);
       }
@@ -37,7 +37,7 @@ namespace RMC.Core.UEvents.Assets
          _uEvent.RemoveAllListeners();
       }
 
-      public void RemoveListener(UnityAction<UEventData> unityAction)
+      public void RemoveListener(UnityAction<IUEventData> unityAction)
       {
          _uEvent.RemoveListener(unityAction);
       }

@@ -18,7 +18,7 @@ namespace RMC.Core.UEvents.EventDispatcher
 
       //  Methods --------------------------------
 
-      public void Invoke<T>(UEventData uEventData) where T : UEvent
+      public void Invoke<T>(IUEventData uEventData) where T : UEvent
       {
          UEvent uEvent = _getUEvent<T>();
          if (uEvent != null)
@@ -34,7 +34,7 @@ namespace RMC.Core.UEvents.EventDispatcher
          return uEvent;
       }
 
-      public void AddEventListener<T>(UnityAction<UEventData> unityAction) where T : UEvent
+      public void AddEventListener<T>(UnityAction<IUEventData> unityAction) where T : UEvent
       {
          UEvent uEvent = _getUEvent<T>();
 
@@ -55,7 +55,7 @@ namespace RMC.Core.UEvents.EventDispatcher
          _uEvents.Clear();
       }
 
-      public void RemoveListener<T>(UnityAction<UEventData> unityAction) where T : UEvent
+      public void RemoveListener<T>(UnityAction<IUEventData> unityAction) where T : UEvent
       {
          UEvent uEvent = _getUEvent<T>();
          if (uEvent != null)

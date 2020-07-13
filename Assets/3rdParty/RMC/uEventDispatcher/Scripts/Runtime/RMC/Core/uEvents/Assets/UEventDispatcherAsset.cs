@@ -17,12 +17,12 @@ namespace RMC.Core.UEvents.Assets
       }
 
       //  Methods   -------------------------------
-      public void Invoke<T>(UEventData uEventData) where T : UEvent
+      public void Invoke<T>(IUEventData uEventData) where T : UEvent
       {
          _eventDispatcher.Invoke<T>(uEventData);
       }
 
-      public void AddEventListener<T>(UnityAction<UEventData> unityAction) where T : UEvent
+      public void AddEventListener<T>(UnityAction<IUEventData> unityAction) where T : UEvent
       {
          _eventDispatcher.AddEventListener<T>(unityAction);
       }
@@ -32,7 +32,7 @@ namespace RMC.Core.UEvents.Assets
          _eventDispatcher.RemoveAllListeners();
       }
 
-      public void RemoveListener<T>(UnityAction<UEventData> unityAction) where T : UEvent
+      public void RemoveListener<T>(UnityAction<IUEventData> unityAction) where T : UEvent
       {
          _eventDispatcher.RemoveListener<T>(unityAction);
       }
