@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace RMC.Core.UEvents.Assets
 {
    [CreateAssetMenu(fileName = "UEventAsset", menuName = "RMC/UEvents/UEventAsset", order = 0)]
-   public class UEventAsset : ScriptableObject
+   public class UEventAsset : ScriptableObject, IUEvent
    {
       //  Fields ---------------------------------------
       private UEvent _uEvent = null;
@@ -12,7 +12,7 @@ namespace RMC.Core.UEvents.Assets
       //  Unity Methods   -------------------------------
       protected void OnEnable()
       {
-        _uEvent = new UEvent();
+         _uEvent = new UEvent();
 
       }
 

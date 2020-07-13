@@ -1,53 +1,47 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
-using RMC.Core.UEvents;
-using RMC.Core.UEvents.EventDispatcher;
-using RMC.Core.UEvents.Examples;
-using UnityEngine;
-using UnityEngine.TestTools;
+﻿using NUnit.Framework;
+using System;
 
-namespace Tests
+namespace RMC.Core.UEvents.EventDispatcher
 {
+   public class TestUEvent01 : UEvent { };
+   public class TestUEvent02 : UEvent { };
+
    public class UEventDispatcherTest
    {
       [Test]
-      public void Event_IsNotCalled_WhenNotCalled()
+      public void Listener_WasNotCalled_WhenNotInvoked()
       {
          // Arrange
-         var uEventDispatcher = new UEventDispatcher(this);
+         var uEventDispatcher = new UEventDispatcher();
          bool wasCalled = false;
 
          // Act
-         uEventDispatcher.AddEventListener("test", (IEvent iEvent) =>
+         uEventDispatcher.AddEventListener<TestUEvent01>((UEventData uEventData) =>
          {
             wasCalled = true;
          });
 
          // Assert
          Assert.That(wasCalled, Is.False);
-
       }
 
       [Test]
-      public void Event_IsCalled_WhenCalled()
+      public void Listener_WasCalled_WhenInvoked()
       {
          // Arrange
-         var uEventDispatcher = new UEventDispatcher(this);
+         var uEventDispatcher = new UEventDispatcher();
          bool wasCalled = false;
 
-         uEventDispatcher.AddEventListener("test", (IEvent iEvent) =>
+         uEventDispatcher.AddEventListener<TestUEvent01>((UEventData uEventData) =>
          {
             wasCalled = true;
          });
 
          // Act
-         uEventDispatcher.DispatchEvent(new SampleEvent("test", null));
+         uEventDispatcher.Invoke<TestUEvent01>(new UEventData());
 
          // Assert
          Assert.That(wasCalled, Is.True);
-
       }
    }
 }

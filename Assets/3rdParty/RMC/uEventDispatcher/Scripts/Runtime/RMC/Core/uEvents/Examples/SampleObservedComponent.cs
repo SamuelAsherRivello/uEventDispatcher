@@ -16,20 +16,22 @@ namespace RMC.Core.UEvents.Examples
 		//  Unity Methods   -------------------------------
 		protected void Awake ()
 		{
-			_eventDispatcher = new EventDispatcher.UEventDispatcher(this);
+			_eventDispatcher = new EventDispatcher.UEventDispatcher();
 		}
 
 		protected void Start()
 		{
-			SampleEvent sampleEvent = new SampleEvent(SampleEvent.SAMPLE_EVENT, "foo");
-			Debug.Log("Dispatching: SampleEvent " + sampleEvent);
-			_eventDispatcher.DispatchEvent(sampleEvent);
+			UEventData uEventData = new UEventData();
+			_eventDispatcher.Invoke<UEvent>(uEventData);
 		}
 
 		protected void OnDestroy()
 		{
-			_eventDispatcher.RemoveAllEventListeners();
-			_eventDispatcher = null;
+			if (_eventDispatcher != null)
+         {
+				_eventDispatcher.RemoveAllListeners();
+				_eventDispatcher = null;
+			}
 		}
 	}
 }

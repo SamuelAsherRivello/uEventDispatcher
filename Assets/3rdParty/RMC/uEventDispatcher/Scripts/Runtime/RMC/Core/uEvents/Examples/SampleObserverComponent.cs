@@ -1,31 +1,33 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace RMC.Core.UEvents.Examples
 {
 	public class SampleObserverComponent : MonoBehaviour
 	{
 		//  Fields ---------------------------------------
-		public SampleObservedComponent SampleObservedGameObject;
+		[SerializeField]
+		private SampleObservedComponent SampleObservedGameObject = null;
 
 		//  Unity Methods   ------------------------------
 		protected void Start()
 		{
-			SampleObservedGameObject.EventDispatcher.AddEventListener(SampleEvent.SAMPLE_EVENT,
-				SampleObservedComponent_onSampleEvent);
-
+			UEventData uEventData = new UEventData();
+			SampleObservedGameObject.EventDispatcher.AddEventListener<UEvent>(
+				SampleObservedComponent_OnSampleEvent);
 		}
-		protected void OnDestroy()
+
+		//TODO: Show cleanup in every demo
+      protected void OnDestroy()
 		{
-			SampleObservedGameObject?.EventDispatcher?.RemoveEventListener(SampleEvent.SAMPLE_EVENT,
-				SampleObservedComponent_onSampleEvent);
+			SampleObservedGameObject?.EventDispatcher?.RemoveListener<UEvent>(
+				SampleObservedComponent_OnSampleEvent);
 		}
 
 		//  Event Handlers    ------------------------------
-		private void SampleObservedComponent_onSampleEvent(IEvent iEvent)
+		private void SampleObservedComponent_OnSampleEvent(UEventData uEventData)
 		{
-			SampleEvent sampleEvent = (SampleEvent)iEvent;
-
-			Debug.Log($"{this.GetType().Name} OnSampleEvent() CustomValue={sampleEvent.CustomValue}");
+			Debug.Log($"{this.GetType().Name} OnSampleEvent() uEventData={uEventData}");
 		}
 	}
 }

@@ -13,7 +13,7 @@ namespace RMC.Core.UEvents.Examples
 		//  Unity Methods   -------------------------------
 		protected void Start ()
 		{
-			_uEventDispatcherAsset.DispatchEvent(new SampleEvent(SampleEvent.SAMPLE_EVENT, "some custom value"));
+			_uEventDispatcherAsset.Invoke<UEvent>(null);
 		}
 	}
 }

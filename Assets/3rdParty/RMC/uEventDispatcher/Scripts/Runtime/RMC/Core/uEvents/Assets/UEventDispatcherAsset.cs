@@ -1,5 +1,6 @@
 ﻿using RMC.Core.UEvents.EventDispatcher;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RMC.Core.UEvents.Assets
 {
@@ -12,38 +13,28 @@ namespace RMC.Core.UEvents.Assets
       //  Unity Methods   -------------------------------
       protected void OnEnable()
       {
-         _eventDispatcher = new EventDispatcher.UEventDispatcher(this);
+         _eventDispatcher = new EventDispatcher.UEventDispatcher();
       }
 
       //  Methods   -------------------------------
-      public bool AddEventListener(string type, EventDelegate eventDelegate)
+      public void Invoke<T>(UEventData uEventData) where T : UEvent
       {
-         return _eventDispatcher.AddEventListener(type, eventDelegate);
+         _eventDispatcher.Invoke<T>(uEventData);
       }
 
-      public bool AddEventListener(string type, EventDelegate eventDelegate, EventDispatcherAddMode eventDispatcherAddMode)
+      public void AddEventListener<T>(UnityAction<UEventData> unityAction) where T : UEvent
       {
-         return _eventDispatcher.AddEventListener(type, eventDelegate, eventDispatcherAddMode);
+         _eventDispatcher.AddEventListener<T>(unityAction);
       }
 
-      public bool DispatchEvent(IEvent iEvent)
+      public void RemoveAllListeners()
       {
-         return _eventDispatcher.DispatchEvent(iEvent);
+         _eventDispatcher.RemoveAllListeners();
       }
 
-      public bool HasEventListener(string type, EventDelegate eventDelegate)
+      public void RemoveListener<T>(UnityAction<UEventData> unityAction) where T : UEvent
       {
-         return _eventDispatcher.HasEventListener(type, eventDelegate);
-      }
-
-      public bool RemoveAllEventListeners()
-      {
-         return _eventDispatcher.RemoveAllEventListeners();
-      }
-
-      public bool RemoveEventListener(string type, EventDelegate eventDelegate)
-      {
-         return _eventDispatcher.RemoveEventListener(type, eventDelegate);
+         _eventDispatcher.RemoveListener<T>(unityAction);
       }
    }
 }

@@ -1,227 +1,79 @@
+using UnityEngine.Events;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
 namespace RMC.Core.UEvents.EventDispatcher
 {
-	//  Namespace Properties ------------------------------
-	public delegate void EventDelegate(IEvent iEvent);
-
-	public enum EventDispatcherAddMode
+	public class UEventDispatcher : IUEventDispatcher
 	{
-		DEFAULT,
-		SINGLE_SHOT
-	}
-
-	//  Class Attributes ----------------------------------
-	public class UEventDispatcher : IEventDispatcher
-	{
-		//  Fields ---------------------------------------
-		private Hashtable _eventListenerData = new Hashtable();
-		private object _target;
+      //  Fields ---------------------------------------
+      private Dictionary<Type, UEvent> _uEvents = null;
 
 		//  Initialization -------------------------------
-		public UEventDispatcher(object target)
+		public UEventDispatcher()
 		{
-			_target = target;
-		}
+         _uEvents = new Dictionary<Type, UEvent>();
+      }
 
-		//  Unity Methods --------------------------------
-		public void OnApplicationQuit()
-		{
-			//TODO, DO THIS CLEANUP HERE, OR OBLIGATE API-USER TO DO IT??
-			_eventListenerData.Clear();
-		}
-
-		//  Methods --------------------------------
-		public bool AddEventListener(string eventName, EventDelegate eventDelegate)
-		{
-			return AddEventListener(eventName, eventDelegate, EventDispatcherAddMode.DEFAULT);
-		}
-		public bool AddEventListener(string eventName, EventDelegate eventDelegate, EventDispatcherAddMode eventDispatcherAddMode)
-		{
-			//
-			bool wasSuccessful_boolean = false;
-
-			//
-			object aIEventListener = _getArgumentsCallee(eventDelegate);
-
-			//
-			if (aIEventListener != null && eventName != null)
-			{
-
-				//	OUTER
-				string keyForOuterHashTable_string = _getKeyForOuterHashTable(eventName);
-				if (!this._eventListenerData.ContainsKey(keyForOuterHashTable_string))
-				{
-					this._eventListenerData.Add(keyForOuterHashTable_string, new Hashtable());
-				}
-
-            //	INNER
-            Hashtable inner_hashtable = this._eventListenerData[keyForOuterHashTable_string] as Hashtable;
-				EventListenerData eventListenerData = new EventListenerData(aIEventListener, eventName, eventDelegate, eventDispatcherAddMode);
-				//
-				string keyForInnerHashTable_string = _getKeyForInnerHashTable(eventListenerData);
-				if (inner_hashtable.Contains(keyForInnerHashTable_string))
-				{
-
-					//THIS SHOULD *NEVER* HAPPEN - REMOVE AFTER TESTED WELL
-					Debug.Log("TODO (FIX THIS): Event Manager: Listener: " + keyForInnerHashTable_string + " is already in list for event: " + keyForOuterHashTable_string);
-
-				}
-				else
-				{
-
-					//	ADD
-					inner_hashtable.Add(keyForInnerHashTable_string, eventListenerData);
-					wasSuccessful_boolean = true;
-					//Debug.Log ("	ADDED AT: " + keyForInnerHashTable_string + " = " +  eventListenerData);
-				}
-
-			}
-			return wasSuccessful_boolean;
-		}
-
-		public bool HasEventListener(string eventName, EventDelegate eventDelegate)
-		{
-			//
-			bool hasEventListener_boolean = false;
-
-			//
-			object aIEventListener = _getArgumentsCallee(eventDelegate);
-
-			//	OUTER
-			string keyForOuterHashTable_string = _getKeyForOuterHashTable(eventName);
-			if (_eventListenerData.ContainsKey(keyForOuterHashTable_string))
-			{
-
-				//	INNER
-				Hashtable inner_hashtable = _eventListenerData[keyForOuterHashTable_string] as Hashtable;
-				string keyForInnerHashTable_string = _getKeyForInnerHashTable(new EventListenerData(aIEventListener, eventName, eventDelegate, EventDispatcherAddMode.DEFAULT));
-				//
-				if (inner_hashtable.Contains(keyForInnerHashTable_string))
-				{
-					hasEventListener_boolean = true;
-				}
-			}
-
-			return hasEventListener_boolean;
-		}
-
-		public bool RemoveEventListener(string eventName, EventDelegate eventDelegate)
-		{
-			//
-			bool wasSuccessful_boolean = false;
-
-			//
-			if (HasEventListener(eventName, eventDelegate))
-			{
-				//	OUTER
-				string keyForOuterHashTable_string = _getKeyForOuterHashTable(eventName);
-				Hashtable inner_hashtable = _eventListenerData[keyForOuterHashTable_string] as Hashtable;
-				//
-				object aIEventListener = _getArgumentsCallee(eventDelegate);
-				//  INNER
-				string keyForInnerHashTable_string = _getKeyForInnerHashTable(new EventListenerData(aIEventListener, eventName, eventDelegate, EventDispatcherAddMode.DEFAULT));
-				inner_hashtable.Remove(keyForInnerHashTable_string);
-				wasSuccessful_boolean = true;
-			}
-
-			return wasSuccessful_boolean;
-
-		}
-		public bool RemoveAllEventListeners()
-		{
-			//
-			bool wasSuccessful_boolean = false;
-
-			//TODO, IS IT A MEMORY LEAK TO JUST RE-CREATE THE TABLE? ARE THE INNER HASHTABLES LEAKING?
-			_eventListenerData = new Hashtable();
-
-			return wasSuccessful_boolean;
-		}
-
-		public bool DispatchEvent(IEvent aIEvent)
-		{
-			bool wasSuccessful_boolean = false;
-
-			//
-			_doAddTargetValueToIEvent(aIEvent);
-
-			//	OUTER
-			string keyForOuterHashTable_string = _getKeyForOuterHashTable(aIEvent.Type);
-			int dispatchedCount_int = 0;
-			if (_eventListenerData.ContainsKey(keyForOuterHashTable_string))
-			{
-
-            //	INNER
-            Hashtable inner_hashtable = this._eventListenerData[keyForOuterHashTable_string] as Hashtable;
-				IEnumerator innerHashTable_ienumerator = inner_hashtable.GetEnumerator();
-				DictionaryEntry dictionaryEntry;
-				EventListenerData eventListenerData;
-				ArrayList toBeRemoved_arraylist = new ArrayList();
-				//
-				while (innerHashTable_ienumerator.MoveNext())
-				{
-
-					dictionaryEntry = (DictionaryEntry)innerHashTable_ienumerator.Current;
-					eventListenerData = dictionaryEntry.Value as EventListenerData;
-
-					//***DO THE DISPATCH***
-					//Debug.Log ("DISPATCH : ");
-					//Debug.Log ("	n    : " + eventListenerData.eventName );
-					//Debug.Log ("	from : " + aIEvent.target );
-					//Debug.Log ("	to   : " + eventListenerData.eventListener );
-					//Debug.Log ("	del  : " + eventListenerData.eventDelegate + " " + (eventListenerData.eventDelegate as System.Delegate).Method.DeclaringType.Name + " " + (eventListenerData.eventDelegate as System.Delegate).Method.Name.ToString());
-					eventListenerData.EventDelegate(aIEvent);
+      //  Unity Methods --------------------------------
+      public void OnApplicationQuit()
+      {
+      }
 
 
-					//TODO - THIS IS PROBABLY FUNCTIONAL BUT NOT OPTIMIZED, MY APPROACH TO HOW/WHY SINGLE SHOTS ARE REMOVED
-					//REMOVE IF ONESHOT
-					if (eventListenerData.EventListeningMode == EventDispatcherAddMode.SINGLE_SHOT)
-					{
+      //  Methods --------------------------------
 
-						toBeRemoved_arraylist.Add(eventListenerData);
-					}
+      public void Invoke<T>(UEventData uEventData) where T : UEvent
+      {
+         UEvent uEvent = _getUEvent<T>();
+         if (uEvent != null)
+         {
+            uEvent.Invoke(uEventData);
+         }
 
-					//MARK SUCCESS, BUT ALSO CONTINUE LOOPING TOO
-					wasSuccessful_boolean = true;
-					dispatchedCount_int++;
-				}
+         Debug.Log("invoke uEvent: " + uEvent);
+      }
 
-				//CLEANUP ANY ONE-SHOT, SINGLE-USE 
-				EventListenerData toBeRemoved_eventlistenerdata;
-				for (int count_int = toBeRemoved_arraylist.Count - 1; count_int >= 0; count_int--)
-				{
-					toBeRemoved_eventlistenerdata = toBeRemoved_arraylist[count_int] as EventListenerData;
-					RemoveEventListener(toBeRemoved_eventlistenerdata.EventName, toBeRemoved_eventlistenerdata.EventDelegate);
-				}
+      private UEvent _getUEvent<T>() where T : UEvent
+      {
+         //Debug.Log("looking for type " + (typeof(T))  + " in count of " + _uEvents.Count);
 
-			}
+         UEvent uEvent = null;
+         _uEvents.TryGetValue(typeof(T), out uEvent);
+         return uEvent;
+      }
 
-			return wasSuccessful_boolean;
-		}
+      public void AddEventListener<T>(UnityAction<UEventData> unityAction) where T : UEvent
+      {
+         UEvent uEvent = _getUEvent<T>();
 
-		public void _doAddTargetValueToIEvent(IEvent aIEvent)
-		{
-			aIEvent.Target = _target;
-		}
+         if (uEvent == null)
+         {
+            uEvent = Activator.CreateInstance<T>();
+            _uEvents.Add(typeof(T), uEvent);
+         }
 
-		private string _getKeyForOuterHashTable(string aEventName_string)
-		{
-			//SIMPLY USING THE EVENT NAME - METHOD USED HERE, IN CASE I WANT TO TWEAK THIS MORE...
-			return aEventName_string;
-		}
+         uEvent.AddListener(unityAction);
+      }
 
-		private string _getKeyForInnerHashTable(EventListenerData aEventListenerData)
-		{
-			//VERY UNIQUE - NICE!
-			return aEventListenerData.EventListener.GetType().FullName + "_" + aEventListenerData.EventListener.GetType().GUID + "_" + aEventListenerData.EventName + "_" + (aEventListenerData.EventDelegate as System.Delegate).Method.Name.ToString();
-		}
 
-		public object _getArgumentsCallee(EventDelegate aEventDelegate)
-		{
-			return (aEventDelegate as System.Delegate).Target;
-		}
+      public void RemoveAllListeners()
+      {
+         foreach (KeyValuePair<Type, UEvent> entry in _uEvents)
+         {
+            entry.Value.RemoveAllListeners();
+         }
+         _uEvents.Clear();
+      }
 
-	}
+      public void RemoveListener<T>(UnityAction<UEventData> unityAction) where T : UEvent
+      {
+         UEvent uEvent = _getUEvent<T>();
+         if (uEvent != null)
+         {
+            uEvent.RemoveListener(unityAction);
+         }
+      }
+   }
 }

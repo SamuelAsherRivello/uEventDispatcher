@@ -12,20 +12,19 @@ namespace RMC.Core.UEvents.Examples
 		//  Unity Methods   -------------------------------
 		protected void OnEnable()
 		{
-			_uEventDispatcherAsset.AddEventListener(SampleEvent.SAMPLE_EVENT, EventAsset_OnSampleEvent);
+			UEventData uEventData = new UEventData();
+			_uEventDispatcherAsset.AddEventListener<UEvent>(EventAsset_OnSampleEvent);
 		}
 
-		protected void OnDisable()
+      protected void OnDisable()
 		{
-			_uEventDispatcherAsset.RemoveEventListener(SampleEvent.SAMPLE_EVENT, EventAsset_OnSampleEvent);
+			_uEventDispatcherAsset.RemoveListener<UEvent>(EventAsset_OnSampleEvent);
 		}
 
 		//  Event Handlers   -------------------------------
-		private void EventAsset_OnSampleEvent(IEvent iEvent)
+		private void EventAsset_OnSampleEvent(UEventData uEventData)
 		{
-			SampleEvent sampleEvent = (SampleEvent)iEvent;
-
-			Debug.Log($"{this.GetType().Name} OnSampleEvent() CustomValue={sampleEvent.CustomValue}");
+			Debug.Log($"{this.GetType().Name} OnSampleEvent() uEventData={uEventData}");
 		}
 	}
 }
