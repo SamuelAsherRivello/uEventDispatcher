@@ -8,15 +8,15 @@ namespace RMC.Core.UEvents.Examples
 	public class SampleObservedComponent : MonoBehaviour
 	{
 		//  Properties -------------------------------------
-		public EventDispatcher.EventDispatcher EventDispatcher { get { return _eventDispatcher; } }
+		public EventDispatcher.UEventDispatcher EventDispatcher { get { return _eventDispatcher; } }
 
 		//  Fields ---------------------------------------
-		private EventDispatcher.EventDispatcher _eventDispatcher;
+		private EventDispatcher.UEventDispatcher _eventDispatcher;
 
 		//  Unity Methods   -------------------------------
 		protected void Awake ()
 		{
-			_eventDispatcher = new EventDispatcher.EventDispatcher(this);
+			_eventDispatcher = new EventDispatcher.UEventDispatcher(this);
 		}
 
 		protected void Start()

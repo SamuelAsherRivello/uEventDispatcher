@@ -13,14 +13,14 @@ namespace RMC.Core.UEvents.EventDispatcher
 	}
 
 	//  Class Attributes ----------------------------------
-	public class EventDispatcher : IEventDispatcher
+	public class UEventDispatcher : IEventDispatcher
 	{
 		//  Fields ---------------------------------------
 		private Hashtable _eventListenerData = new Hashtable();
 		private object _target;
 
 		//  Initialization -------------------------------
-		public EventDispatcher(object target)
+		public UEventDispatcher(object target)
 		{
 			_target = target;
 		}

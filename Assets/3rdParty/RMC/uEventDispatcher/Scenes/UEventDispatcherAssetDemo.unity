@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 50869067}
   - component: {fileID: 50869066}
   m_Layer: 0
-  m_Name: EventDispatcherAssetDemoReceiver
+  m_Name: UEventDispatcherAssetDemoReceiver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23a5100645c9b642adced4798b1d26f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventDispatcherAsset: {fileID: 11400000, guid: f7bb4583425baad45a943c8249d86095,
+  _uEventDispatcherAsset: {fileID: 11400000, guid: c513c11867b5c9b4cb68f632b22f2231,
     type: 2}
 --- !u!4 &50869067
 Transform:
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 791023427}
   - component: {fileID: 791023426}
   m_Layer: 0
-  m_Name: EventDispatcherAssetDemo
+  m_Name: UEventDispatcherAssetDemo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db1ea46adca43641a48ae5097a10053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventDispatcherAsset: {fileID: 11400000, guid: f7bb4583425baad45a943c8249d86095,
+  _uEventDispatcherAsset: {fileID: 11400000, guid: c513c11867b5c9b4cb68f632b22f2231,
     type: 2}
 --- !u!4 &791023427
 Transform:

@@ -1,22 +1,23 @@
-﻿using UnityEngine;
+﻿using RMC.Core.UEvents.Assets;
+using UnityEngine;
 
 namespace RMC.Core.UEvents.Examples
 {
-	public class EventDispatcherAssetDemoReceiver : MonoBehaviour
+	public class UEventDispatcherAssetDemoReceiver : MonoBehaviour
 	{
 		//  Fields ---------------------------------------
 		[SerializeField]
-		public EventDispatcherAsset eventDispatcherAsset;
+		public UEventDispatcherAsset _uEventDispatcherAsset = null;
 
 		//  Unity Methods   -------------------------------
 		protected void OnEnable()
 		{
-			eventDispatcherAsset.AddEventListener(SampleEvent.SAMPLE_EVENT, EventAsset_OnSampleEvent);
+			_uEventDispatcherAsset.AddEventListener(SampleEvent.SAMPLE_EVENT, EventAsset_OnSampleEvent);
 		}
 
 		protected void OnDisable()
 		{
-			eventDispatcherAsset.RemoveEventListener(SampleEvent.SAMPLE_EVENT, EventAsset_OnSampleEvent);
+			_uEventDispatcherAsset.RemoveEventListener(SampleEvent.SAMPLE_EVENT, EventAsset_OnSampleEvent);
 		}
 
 		//  Event Handlers   -------------------------------

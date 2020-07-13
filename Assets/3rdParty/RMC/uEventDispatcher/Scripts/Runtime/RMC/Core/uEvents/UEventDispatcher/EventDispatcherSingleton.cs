@@ -5,12 +5,12 @@ namespace RMC.Core.UEvents.EventDispatcher
 	public class EventDispatcherSingleton : SingletonMonobehavior<EventDispatcherSingleton>
 	{
 		//  Fields ---------------------------------------
-		private EventDispatcher _eventDispatcher;
+		private UEventDispatcher _eventDispatcher;
 
 		//  Unity Methods   -------------------------------
 		protected void Awake()
 		{
-			_eventDispatcher = new EventDispatcher(this);
+			_eventDispatcher = new UEventDispatcher(this);
 		}
 
       //  Methods   -------------------------------
