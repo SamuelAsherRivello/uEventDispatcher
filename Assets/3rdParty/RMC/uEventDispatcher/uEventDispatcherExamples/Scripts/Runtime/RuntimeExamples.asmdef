@@ -1,0 +1,15 @@
+{
+    "name": "RuntimeExamples",
+    "references": [
+        "GUID:7a91babcd0458f84c8da7ff808bcd516"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
