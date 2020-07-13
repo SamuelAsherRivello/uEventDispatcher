@@ -2,11 +2,11 @@
 
 namespace RMC.Core.UEvents
 {
-   public class TestUEvent01 : UEvent { };
-   public class TestUEvent02 : UEvent { };
-
    public class UEventTest
    {
+      private class TestUEvent01 : UEvent { };
+      private class TestUEvent02 : UEvent { };
+
       [Test]
       public void Listener_WasNotCalled_WhenNotInvoked()
       {

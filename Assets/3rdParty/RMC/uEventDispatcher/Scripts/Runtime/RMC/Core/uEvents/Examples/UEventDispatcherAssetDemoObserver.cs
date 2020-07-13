@@ -1,4 +1,4 @@
-﻿using RMC.Core.UEvents.Assets;
+﻿using RMC.Core.UEvents.UEventDispatcher.Assets;
 using UnityEngine;
 
 namespace RMC.Core.UEvents.Examples

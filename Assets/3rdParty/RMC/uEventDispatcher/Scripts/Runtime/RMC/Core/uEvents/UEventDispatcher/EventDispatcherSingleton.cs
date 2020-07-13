@@ -1,7 +1,7 @@
 ﻿using RMC.Core.Singleton;
 using UnityEngine.Events;
 
-namespace RMC.Core.UEvents.EventDispatcher
+namespace RMC.Core.UEvents.UEventDispatcher
 {
 	public class EventDispatcherSingleton : SingletonMonobehavior<EventDispatcherSingleton>, 
       IUEventDispatcher

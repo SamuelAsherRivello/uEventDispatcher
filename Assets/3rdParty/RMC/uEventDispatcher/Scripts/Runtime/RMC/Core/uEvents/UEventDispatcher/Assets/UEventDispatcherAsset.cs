@@ -1,19 +1,18 @@
-﻿using RMC.Core.UEvents.EventDispatcher;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace RMC.Core.UEvents.Assets
+namespace RMC.Core.UEvents.UEventDispatcher.Assets
 {
    [CreateAssetMenu(fileName = "UEventDispatcherAsset", menuName = "RMC/UEvents/UEventDispatcherAsset", order = 0)]
    public class UEventDispatcherAsset : ScriptableObject, IUEventDispatcherAsset
    {
       //  Fields ---------------------------------------
-      private EventDispatcher.UEventDispatcher _eventDispatcher = null;
+      private UEvents.UEventDispatcher.UEventDispatcher _eventDispatcher = null;
 
       //  Unity Methods   -------------------------------
       protected void OnEnable()
       {
-         _eventDispatcher = new EventDispatcher.UEventDispatcher();
+         _eventDispatcher = new UEvents.UEventDispatcher.UEventDispatcher();
       }
 
       //  Methods   -------------------------------

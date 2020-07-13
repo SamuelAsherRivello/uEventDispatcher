@@ -1,7 +1,7 @@
 using RMC.Core.UEvents.Assets;
 using UnityEngine.Events;
 
-namespace RMC.Core.UEvents.EventDispatcher
+namespace RMC.Core.UEvents.UEventDispatcher
 {
 	public interface IUEventDispatcher
 	{

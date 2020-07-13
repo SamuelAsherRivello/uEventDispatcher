@@ -1,4 +1,4 @@
-﻿using RMC.Core.UEvents.EventDispatcher;
+﻿using RMC.Core.UEvents.UEventDispatcher;
 using UnityEngine;
 
 namespace RMC.Core.UEvents

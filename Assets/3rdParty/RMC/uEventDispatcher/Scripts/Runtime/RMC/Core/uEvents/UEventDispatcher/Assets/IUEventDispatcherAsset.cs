@@ -1,6 +1,4 @@
-﻿using RMC.Core.UEvents.EventDispatcher;
-
-namespace RMC.Core.UEvents.Assets
+﻿namespace RMC.Core.UEvents.UEventDispatcher.Assets
 {
 	//  Namespace Properties ------------------------------
 

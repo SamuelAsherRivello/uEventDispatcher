@@ -1,4 +1,4 @@
-﻿using RMC.Core.UEvents.EventDispatcher;
+﻿using RMC.Core.UEvents.UEventDispatcher;
 using RMC.Core.UEvents.Examples;
 using System.Collections;
 using UnityEngine;

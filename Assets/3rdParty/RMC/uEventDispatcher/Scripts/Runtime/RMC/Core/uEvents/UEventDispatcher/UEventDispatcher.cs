@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RMC.Core.UEvents.EventDispatcher
+namespace RMC.Core.UEvents.UEventDispatcher
 {
 	public class UEventDispatcher : IUEventDispatcher
 	{
