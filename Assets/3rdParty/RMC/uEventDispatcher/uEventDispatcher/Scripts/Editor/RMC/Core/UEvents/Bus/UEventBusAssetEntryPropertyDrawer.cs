@@ -1,12 +1,9 @@
-﻿using RMC.Core.Attributes;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace RMC.Core.UEvents.Bus
 {
-  
-   [VEPD]
    [CustomPropertyDrawer(typeof(UEventBusAssetEntry), true)]
    public class UEventBusAssetEntryPropertyDrawer : PropertyDrawer
    {
@@ -14,8 +11,11 @@ namespace RMC.Core.UEvents.Bus
       public override VisualElement CreatePropertyGUI(SerializedProperty property)
       {
          // Create property fields.
-         var _fromUEventAsset = new PropertyField(property.FindPropertyRelative("_fromUEventAsset"));
-         var _toUEventAsset = new PropertyField(property.FindPropertyRelative("_toUEventAsset"));
+         var _fromUEventAsset = new PropertyField(
+            property.FindPropertyRelative("_fromUEventAsset"), "From");
+
+         var _toUEventAsset = new PropertyField(
+            property.FindPropertyRelative("_toUEventAsset"), "To");
 
          // Create property container element.
          var container = new VisualElement();
@@ -30,6 +30,5 @@ namespace RMC.Core.UEvents.Bus
 
          return container;
       }
-
    }
 }

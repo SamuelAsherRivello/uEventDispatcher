@@ -16,9 +16,6 @@ namespace RMC.Core.UEvents.Bus
 		private UEventAsset _fromUEventAsset = null;
 
 		[SerializeField]
-		private float _test = 22;
-
-		[SerializeField]
 		private UEventAsset _toUEventAsset = null;
 	}
 }

@@ -239,18 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uEventBusAssetEntries:
-  - _fromUEventAsset: {fileID: 0}
-    _test: 22
-    _toUEventAsset: {fileID: 0}
   - _fromUEventAsset: {fileID: 11400000, guid: 34da9f32e2ca4a64586fcab72efb420d, type: 2}
-    _test: 22
     _toUEventAsset: {fileID: 11400000, guid: f0a98002b4e82bc469a99f4cce05ef9e, type: 2}
-  - _fromUEventAsset: {fileID: 0}
-    _test: 22
-    _toUEventAsset: {fileID: 0}
-  - _fromUEventAsset: {fileID: 0}
-    _test: 22
-    _toUEventAsset: {fileID: 0}
 --- !u!4 &1793380002
 Transform:
   m_ObjectHideFlags: 0
