@@ -1,0 +1,21 @@
+{
+    "name": "EditorExamples",
+    "references": [
+        "GUID:7a91babcd0458f84c8da7ff808bcd516",
+        "GUID:7ad604c55f78d0a4bbd8a99b3c365a7f",
+        "GUID:ff705a8d115a38a40b3587ef49f2149d"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
