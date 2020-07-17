@@ -1,7 +1,7 @@
 ﻿using RMC.Core.UEvents.UEventDispatcher;
 using UnityEngine;
 
-namespace RMC.Core.UEvents
+namespace RMC.Core.UEvents.Examples
 {
 	public class UEventDispatcherDemoObserver : MonoBehaviour
 	{

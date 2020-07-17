@@ -3,7 +3,7 @@ using RMC.Core.UEvents.Examples;
 using System.Collections;
 using UnityEngine;
 
-namespace RMC.Core.UEvents
+namespace RMC.Core.UEvents.Examples
 {
 	public class UEventDispatcherDemoSubject : MonoBehaviour
 	{
