@@ -4,6 +4,10 @@ namespace RMC.Core.UEvents.Assets
 {
 	public class UEventAssetListener : MonoBehaviour
 	{
+		//  Properties ---------------------------------------
+		public UEventAsset UEventAsset { set { _uEventAsset = value; } get { return _uEventAsset; } }
+		public UEvent UEvent { set { _uEvent = value; } get { return _uEvent; } }
+
 		//  Fields ---------------------------------------
 		[SerializeField]
 		private UEventAsset _uEventAsset = null;
