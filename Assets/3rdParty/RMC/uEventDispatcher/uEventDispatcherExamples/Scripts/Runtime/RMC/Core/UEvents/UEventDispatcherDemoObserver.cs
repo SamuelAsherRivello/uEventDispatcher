@@ -8,15 +8,15 @@ namespace RMC.Core.UEvents.Examples
 		protected void Start()
 		{
 			UEventData uEventData = new UEventData();
-			EventDispatcherSingleton.Instance.AddEventListener<UEvent>(
+			UEventDispatcherSingleton.Instance.AddEventListener<UEvent>(
 				EventDispatcherSingleton_OnSampleEvent);
 		}
 
 		protected void OnDestroy()
 		{
-			if (EventDispatcherSingleton.IsInstantiated)
+			if (UEventDispatcherSingleton.IsInstantiated)
          {
-				EventDispatcherSingleton.Instance.RemoveListener<UEvent>(
+				UEventDispatcherSingleton.Instance.RemoveListener<UEvent>(
 				EventDispatcherSingleton_OnSampleEvent);
 			}
 		}

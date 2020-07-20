@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace RMC.Core.UEvents.UEventDispatcher
 {
-	public class EventDispatcherSingleton : SingletonMonobehavior<EventDispatcherSingleton>, 
+	public class UEventDispatcherSingleton : SingletonMonobehavior<UEventDispatcherSingleton>, 
       IUEventDispatcher
 	{
 		//  Fields ---------------------------------------

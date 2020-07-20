@@ -10,6 +10,8 @@ namespace RMC.Core.UEvents.Bus
 		//  Fields ---------------------------------------
 		public UEventAsset FromUEventAsset { set { _fromUEventAsset = value; } get { return _fromUEventAsset; } }
 		public UEventAsset ToUEventAsset { set { _toUEventAsset = value; } get { return _toUEventAsset; } }
+		public float Delay { set { _delay = value; } get { return _delay; } }
+
 
 		//  Fields ---------------------------------------
 		[SerializeField]
@@ -17,5 +19,8 @@ namespace RMC.Core.UEvents.Bus
 
 		[SerializeField]
 		private UEventAsset _toUEventAsset = null;
+
+		[SerializeField]
+		private float _delay = 0;
 	}
 }

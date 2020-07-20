@@ -7,33 +7,33 @@ namespace RMC.Core.UEvents.UEventDispatcher.Assets
    public class UEventDispatcherAsset : ScriptableObject, IUEventDispatcherAsset
    {
       //  Fields ---------------------------------------
-      private UEvents.UEventDispatcher.UEventDispatcher _eventDispatcher = null;
+      private UEventDispatcher _uEventDispatcher = null;
 
       //  Unity Methods   -------------------------------
       protected void OnEnable()
       {
-         _eventDispatcher = new UEvents.UEventDispatcher.UEventDispatcher();
+         _uEventDispatcher = new UEvents.UEventDispatcher.UEventDispatcher();
       }
 
       //  Methods   -------------------------------
       public void Invoke<T>(IUEventData uEventData) where T : IUEvent
       {
-         _eventDispatcher.Invoke<T>(uEventData);
+         _uEventDispatcher.Invoke<T>(uEventData);
       }
 
       public void AddEventListener<T>(UnityAction<IUEventData> unityAction) where T : IUEvent
       {
-         _eventDispatcher.AddEventListener<T>(unityAction);
+         _uEventDispatcher.AddEventListener<T>(unityAction);
       }
 
       public void RemoveAllListeners()
       {
-         _eventDispatcher.RemoveAllListeners();
+         _uEventDispatcher.RemoveAllListeners();
       }
 
       public void RemoveListener<T>(UnityAction<IUEventData> unityAction) where T : IUEvent
       {
-         _eventDispatcher.RemoveListener<T>(unityAction);
+         _uEventDispatcher.RemoveListener<T>(unityAction);
       }
    }
 }

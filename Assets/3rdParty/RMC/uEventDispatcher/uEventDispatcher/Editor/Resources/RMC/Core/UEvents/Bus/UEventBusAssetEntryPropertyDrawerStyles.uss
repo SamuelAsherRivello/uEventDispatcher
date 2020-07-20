@@ -1,0 +1,18 @@
+﻿.unity-label
+{
+    color:#ff0000;
+}
+
+.unity-base-field__label
+{
+    min-width:38px;
+    flex-basis:0px;
+    flex-grow:0.22;
+}
+
+
+.unity-box
+{
+    flex-direction: row;
+}
+

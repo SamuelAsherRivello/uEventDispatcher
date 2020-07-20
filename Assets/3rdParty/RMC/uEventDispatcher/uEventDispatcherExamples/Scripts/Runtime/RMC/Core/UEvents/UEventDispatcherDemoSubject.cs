@@ -17,7 +17,7 @@ namespace RMC.Core.UEvents.Examples
 			yield return new WaitForSeconds(1);
 
 			UEventData uEventData = new UEventData();
-			EventDispatcherSingleton.Instance.Invoke<UEvent>(uEventData);
+			UEventDispatcherSingleton.Instance.Invoke<UEvent>(uEventData);
 		}
 	}
 }

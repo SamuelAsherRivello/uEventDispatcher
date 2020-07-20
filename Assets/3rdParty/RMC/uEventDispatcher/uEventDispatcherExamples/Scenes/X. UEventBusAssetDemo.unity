@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 50869067}
   - component: {fileID: 50869066}
   m_Layer: 0
-  m_Name: Observer
+  m_Name: Observer (Listens to RIGHT)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 791023427}
   - component: {fileID: 791023426}
   m_Layer: 0
-  m_Name: Subject
+  m_Name: Subject (Sends LEFT)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 1793380002}
   - component: {fileID: 1793380001}
   m_Layer: 0
-  m_Name: UEventBus
+  m_Name: UEventBus (Maps LEFT to RIGHT)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,6 +241,10 @@ MonoBehaviour:
   _uEventBusAssetEntries:
   - _fromUEventAsset: {fileID: 11400000, guid: 34da9f32e2ca4a64586fcab72efb420d, type: 2}
     _toUEventAsset: {fileID: 11400000, guid: f0a98002b4e82bc469a99f4cce05ef9e, type: 2}
+    _delay: 3.29
+  - _fromUEventAsset: {fileID: 11400000, guid: 34da9f32e2ca4a64586fcab72efb420d, type: 2}
+    _toUEventAsset: {fileID: 11400000, guid: f0a98002b4e82bc469a99f4cce05ef9e, type: 2}
+    _delay: 3.24
 --- !u!4 &1793380002
 Transform:
   m_ObjectHideFlags: 0
